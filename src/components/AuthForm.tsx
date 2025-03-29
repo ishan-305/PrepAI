@@ -42,7 +42,7 @@ function AuthForm({ type }: { type: FormType }) {
         router.push("/sign-in");
       } else {
         toast.success("Login Successfully");
-        router.push("/dashboard");
+        router.replace("/");
       }
     } catch (error) {
       console.log(error);
@@ -87,7 +87,7 @@ function AuthForm({ type }: { type: FormType }) {
               type="password"
             />
             <Button className="w-full btn" type="submit">
-              {!isSignIn ? "Sign Up" : "Sign In"}
+              {!isSignIn ? "Create an Account" : "Sign In"}
             </Button>
             <div className="flex justify-center">
               <p className="text-center">

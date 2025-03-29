@@ -32,7 +32,7 @@ function page() {
       </section>
       <section className="flex flex-col gap-4 mt-6">
         <h2>Your Past Interviews</h2>
-        <div className="interview-section flex gap-4">
+        <div className="interviews-section">
           {dummyInterviews.map((interview) => (
             <InterviewCard key={interview.id} {...interview} />
           ))}
@@ -40,7 +40,7 @@ function page() {
       </section>
       <section className="flex flex-col gap-4 mt-6">
         <h2>Take an Interview</h2>
-        <div className="interview-section">
+        <div className="interviews-section">
           {dummyInterviews.map((interview) => (
             <InterviewCard key={interview.id} {...interview} />
           ))}

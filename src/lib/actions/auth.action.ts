@@ -1,7 +1,6 @@
 "use server";
 
 import { auth, db } from "@/firebase/admin";
-import { setServers } from "dns";
 import { cookies } from "next/headers";
 
 const ONE_WEEK = 60 * 60 * 24 * 7;
@@ -78,4 +77,40 @@ export async function SignIn(params: SignInParams) {
       message: "Error Logging In",
     };
   }
+}
+
+export async function getCurrentUser(): Promise<User | null> {
+  const cookieStore = await cookies();
+  const sessionCookie = cookieStore.get("session")?.value;
+  if (!sessionCookie) {
+    console.log("No Session Cookie Found");
+    return null;
+  }
+
+  try {
+    const decodedClaims = await auth.verifySessionCookie(sessionCookie, true);
+    const userRecord = await db
+      .collection("users")
+      .doc(decodedClaims.uid)
+      .get();
+
+    if (!userRecord.exists) return null;
+
+    return {
+      ...userRecord.data(),
+      id: userRecord.id,
+    } as User;
+  } catch (error) {
+    console.log(error);
+    console.error("Forcing Log Out No Cooki Found");
+    cookieStore.set("session", "", { maxAge: 0, path: "/" });
+
+    return null;
+  }
+}
+
+export async function isAuthenticated() {
+  const user = await getCurrentUser();
+  console.log(user);
+  return !!user;
 }

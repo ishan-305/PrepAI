@@ -20,12 +20,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const userAuthenticated = await isAuthenticated();
-  console.log(userAuthenticated);
-  if (!userAuthenticated) {
-    redirect("/sign-in");
-    console.log("User Not Authenticated");
-  }
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`${monaSans.className} antialiased pattern`}>

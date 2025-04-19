@@ -7,7 +7,7 @@ import Link from "next/link";
 import DisplayTechstack from "./DisplayTechstack";
 
 function InterviewCard({
-  interviewId,
+  id,
   coverImage,
   userId,
   role,
@@ -55,9 +55,7 @@ function InterviewCard({
             <Button asChild className="btn-primary">
               <Link
                 href={
-                  feedback
-                    ? `/interview/${interviewId}/feedback`
-                    : `/interview/${interviewId}`
+                  feedback ? `/interview/${id}/feedback` : `/interview/${id}`
                 }
               >
                 {feedback ? "View Feedback" : "Take Interview"}

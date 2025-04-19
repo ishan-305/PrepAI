@@ -16,6 +16,7 @@ interface Feedback {
 interface Interview {
   id: string;
   role: string;
+  coverImage: string;
   level: string;
   questions: string[];
   techstack: string[];
@@ -41,6 +42,7 @@ interface User {
 interface InterviewCardProps {
   interviewId?: string;
   userId?: string;
+  coverImage: string;
   role: string;
   type: string;
   techstack: string[];

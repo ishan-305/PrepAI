@@ -8,6 +8,7 @@ import DisplayTechstack from "./DisplayTechstack";
 
 function InterviewCard({
   interviewId,
+  coverImage,
   userId,
   role,
   type,
